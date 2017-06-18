@@ -1,1 +1,6 @@
-/*aquí va tu código*/
+
+(function main(){
+
+	//botones se crean en el index.html
+
+})();
