@@ -22,5 +22,22 @@
 		//creamos la div del comentario
 		var cajaComentario = document.createElement("div");
 		cajaComentario.classList.add("new-coment");
+
+		//creamos el usuario del comentario
+		var user = document.createElement("h3");
+		var nameUser = document.createTextNode(localStorage.nombre);
+		user.appendChild(nameUser);
+
+		//creamos el comentario
+		var coment = document.createElement("p");
+		var contenidoComent = document.createTextNode(localStorage.comentario);
+		coment.appendChild(contenidoComent);
+
+		//ahora la div del comentario adopta al user y el coment
+		cajaComentario.appendChild(user);
+		cajaComentario.appendChild(coment);
+
+		//y el contenedor adopta al div del comentario
+		contenedor.appendChild(cajaComentario);
 	}
 })();
