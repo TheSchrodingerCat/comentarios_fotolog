@@ -1,5 +1,9 @@
 body {
-	background-color: white;
+	background: url(https://image.freepik.com/vector-gratis/fondo-abstracto-con-estrellas-de-colores_1164-718.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 	color:black;
 }
 
