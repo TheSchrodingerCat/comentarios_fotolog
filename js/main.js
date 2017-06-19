@@ -17,30 +17,62 @@ function guardarDatos(){
 	//se limpia el contenedor
 	contenedorComentarios.innerHTML = "";
 
+	var nombre, comentario, cajaComentario, user, nameUser, coment, contenidoComent, contHeart, myHeart, esteCorazon;
+	var j = 0;
+	var position = [];
 	for (i=0 ; i<localStorage.length ; i++){
-		var nombre = localStorage.key(i);
-		var comentario = localStorage.getItem(nombre);
+		nombre = localStorage.key(i);
+		comentario = localStorage.getItem(nombre);
 
-		//ahora creamos el div contenedor del comentario
-		var cajaComentario = document.createElement("div");
-		cajaComentario.classList.add("new-coment");
+		j++;
+		position.push(j);
+		console.log(position);
+		console.log(j);
 
-		//creamos el usuario del comentario
-		var user = document.createElement("h4");
-		var nameUser = document.createTextNode(nombre);
-		user.appendChild(nameUser);
+		if (nombre!="" || comentario!=""){
+			//ahora creamos el div contenedor del comentario
+			cajaComentario = document.createElement("div");
+			cajaComentario.classList.add("new-coment");
 
-		//creamos el comentario
-		var coment = document.createElement("p");
-		var contenidoComent = document.createTextNode(comentario);
-		coment.appendChild(contenidoComent);
+			//creamos el usuario del comentario
+			user = document.createElement("h4");
+			nameUser = document.createTextNode(nombre);
+			user.appendChild(nameUser);
 
-		//ahora la div del comentario adopta al user y el coment
-		cajaComentario.appendChild(user);
-		cajaComentario.appendChild(coment);
+			//creamos el comentario
+			coment = document.createElement("p");
+			contenidoComent = document.createTextNode(comentario);
+			coment.appendChild(contenidoComent);
 
-		//y el contenedor adopta al div del comentario
-		contenedorComentarios.appendChild(cajaComentario);
+			//corazon
+			contHeart = document.createElement("div");
+			contHeart.classList.add("text-right");
+
+			myHeart = document.createElement("i");
+			myHeart.classList.add("fa");
+			myHeart.classList.add("fa-heart");
+			myHeart.classList.add("corazon");
+			myHeart.setAttribute("aria-hidden","true");
+			myHeart.setAttribute("id","corazon" + i.toString());
+
+			contHeart.appendChild(myHeart);
+
+			//ahora la div del comentario adopta al user y el coment
+			cajaComentario.appendChild(user);
+			cajaComentario.appendChild(coment);
+			cajaComentario.appendChild(contHeart);
+
+			//y el contenedor adopta al div del comentario
+			contenedorComentarios.appendChild(cajaComentario);
+
+			//cambio de color del corazon
+			//NO FUNCIONA. AL ESTAR DENTRO DEL FOR SIEMPRE TOMA EL ULTIMO CORAZON.
+			//NO SE COMO HACERLO DESDE AFUERA DEL FOR
+			esteCorazon = document.getElementById("corazon" + position.indexOf(j).toString());
+			esteCorazon.addEventListener("click",function(){
+				esteCorazon.classList.toggle("rojo");
+			});
+		}
 	}
 
 	//para limpiar los inputs

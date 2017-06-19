@@ -40,6 +40,7 @@ h1{
 
 textarea, input{
 	width: 100%;
+	padding: 1%;
 	border-radius: 0px;
 	border: 1px solid DeepPink;
 	margin-bottom: 20px;
