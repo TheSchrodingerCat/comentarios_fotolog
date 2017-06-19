@@ -1,36 +1,38 @@
 
-(function main(){
-
-	//botones se crean en el index.html
-
-	//llamamos a la ID del botón Guardar y le asignamos el evento "click"
-	document.getElementById("guardar").addEventListener("click",postear);
-
-	function postear(){
-
-		//primero, se guardan los datos
-		(function guardarDatos(){
-			localStorage.nombre = document.getElementById("clave").value;
-			localStorage.comentario = document.getElementById("valor").value;
-		})();
+//para limpiar los comentarios
+function limpiaContenedor(){
+	var contenedorComentarios = document.getElementById("mis-comentarios");
+	contenedorComentarios.innerHTML = "";
+}
 
 
+//se guardan los datos
+function guardarDatos(){
+	miClave = document.getElementById("clave").value;
+	miValor = document.getElementById("valor").value;
 
-		//lamamos a la ID llamamos a la ID de el div contenedor
-		var contenedor = document.getElementById("mis-comentarios");
+	localStorage.setItem(miClave,miValor);
 
-		//creamos la div del comentario
+	var contenedorComentarios = document.getElementById("mis-comentarios");
+	//se limpia el contenedor
+	contenedorComentarios.innerHTML = "";
+
+	for (i=0 ; i<localStorage.length ; i++){
+		var nombre = localStorage.key(i);
+		var comentario = localStorage.getItem(nombre);
+
+		//ahora creamos el div contenedor del comentario
 		var cajaComentario = document.createElement("div");
 		cajaComentario.classList.add("new-coment");
 
 		//creamos el usuario del comentario
-		var user = document.createElement("h3");
-		var nameUser = document.createTextNode(localStorage.nombre);
+		var user = document.createElement("h4");
+		var nameUser = document.createTextNode(nombre);
 		user.appendChild(nameUser);
 
 		//creamos el comentario
 		var coment = document.createElement("p");
-		var contenidoComent = document.createTextNode(localStorage.comentario);
+		var contenidoComent = document.createTextNode(comentario);
 		coment.appendChild(contenidoComent);
 
 		//ahora la div del comentario adopta al user y el coment
@@ -38,6 +40,25 @@
 		cajaComentario.appendChild(coment);
 
 		//y el contenedor adopta al div del comentario
-		contenedor.appendChild(cajaComentario);
+		contenedorComentarios.appendChild(cajaComentario);
 	}
+
+	//para limpiar los inputs
+	document.getElementById("clave").value = "";
+	document.getElementById("valor").value = "";
+}
+
+(function guardando(){
+	document.getElementById("guardar").addEventListener("click",guardarDatos);
+	guardarDatos();
+})();
+
+//se borran los datos
+function borrarDatos(){
+	window.localStorage.clear();
+	limpiaContenedor();
+}
+
+(function borrando(){
+	document.getElementById("limpiar-datos").addEventListener("click",borrarDatos);
 })();
