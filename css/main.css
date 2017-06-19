@@ -1,3 +1,4 @@
+
 body {
 	background: url(https://image.freepik.com/vector-gratis/fondo-abstracto-con-estrellas-de-colores_1164-718.jpg);
 	background-size: cover;
@@ -15,9 +16,14 @@ img {
 	margin-bottom: 30px;
 }
 
+.borde {
+	border: 3px solid #efceef;
+}
+
 a {
 	text-decoration: underline;
-	color: green;
+	color: purple;
+	font-weight: bold;
 	margin-bottom: 30px;
 }
 
@@ -59,10 +65,38 @@ textarea, input{
 }
 footer{
 	padding: 10px;
-	margin-top: 10%;
+	margin-top: 6%;
+	background: #efceef;
+	font-weight: bold;
 }
 
 
 
 /* Estilos comentarios */
 
+.container-coments{
+	margin: 3% 0;
+}
+
+.fondo-blanco {
+	background: white;
+}
+
+.btn{
+	background: #efceef;
+	border: #efceef;
+	color: DeepPink;
+	font-weight: bold;
+}
+
+.btn:hover{
+	background: DeepPink;
+	border: DeepPink;
+	color: #efceef;
+	transition: 0.5s;
+}
+
+.new-coment{
+	padding: 2%;
+	border: 5px solid #efceef;
+}
